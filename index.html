@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBF HELIOS & SWAF & InaFLEWS - Multi-Hazard Dashboard</title>
+    <title>IBF BBMKG IV Dashboard</title>
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -12,84 +12,84 @@
         body, html { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; }
         #map { height: 100vh; width: 100%; }
         
-        /* Header Utama di Tengah Atas */
+        /* Header Utama di Tengah Atas (Ukuran Dinaikkan 1.5x) */
         .map-header {
             position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95); padding: 12px 20px;
-            border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-align: center; z-index: 1000; min-width: 420px;
+            background: rgba(255, 255, 255, 0.95); padding: 18px 30px;
+            border-radius: 12px; box-shadow: 0 6px 22px rgba(0,0,0,0.3);
+            text-align: center; z-index: 1000; min-width: 550px;
         }
-        .map-header h3 { margin: 0; font-size: 11px; font-weight: bold; color: #555; }
-        .map-header h1 { margin: 3px 0; font-size: 15px; font-weight: bold; color: #111; }
-        .map-header p { margin: 2px 0 6px 0; font-size: 12px; color: darkred; font-weight: bold; }
+        .map-header h3 { margin: 0; font-size: 16.5px; font-weight: bold; color: #555; }
+        .map-header h1 { margin: 4px 0; font-size: 22.5px; font-weight: bold; color: #111; }
+        .map-header p { margin: 3px 0 9px 0; font-size: 18px; color: darkred; font-weight: bold; }
 
-        /* Logo di Ujung Kanan Atas */
+        /* Logo di Ujung Kanan Atas (Ukuran Dinaikkan 3x dari 45px = 135px) */
         .logo-container {
             position: absolute; top: 15px; right: 20px; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); padding: 8px;
-            border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.95); padding: 12px;
+            border-radius: 12px; box-shadow: 0 6px 22px rgba(0,0,0,0.3);
         }
-        .logo-instansi { width: 45px; height: auto; display: block; }
+        .logo-instansi { width: 135px; height: auto; display: block; }
 
-        /* Dropdown Menu (Hide Button Style) di Kanan Atas (Di bawah Logo) */
+        /* Dropdown Menu (Hide Button Style) di Kanan Atas (Di bawah Logo) (Ukuran Dinaikkan 1.5x) */
         .top-right-controls {
-            position: absolute; top: 75px; right: 20px; z-index: 1000;
-            display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+            position: absolute; top: 110px; right: 20px; z-index: 1000;
+            display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
         }
         .dropdown-wrapper { position: relative; display: inline-block; }
         .dropdown-btn {
-            background: #2c3e50; color: white; border: none; padding: 8px 14px;
-            border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background: #2c3e50; color: white; border: none; padding: 12px 21px;
+            border-radius: 9px; cursor: pointer; font-size: 16.5px; font-weight: bold;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.2);
         }
         .dropdown-btn:hover { background: #34495e; }
         .dropdown-content {
             display: none; position: absolute; right: 0; background-color: #fff;
-            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            border-radius: 6px; z-index: 1001; overflow: hidden; margin-top: 4px;
+            min-width: 250px; box-shadow: 0px 12px 24px rgba(0,0,0,0.2);
+            border-radius: 9px; z-index: 1001; overflow: hidden; margin-top: 6px;
         }
         .dropdown-content button {
-            color: black; padding: 10px 14px; text-align: left; background: none;
-            border: none; width: 100%; cursor: pointer; font-size: 11px; font-weight: bold;
-            border-bottom: 1px solid #eee; display: block;
+            color: black; padding: 15px 21px; text-align: left; background: none;
+            border: none; width: 100%; cursor: pointer; font-size: 16.5px; font-weight: bold;
+            border-bottom: 1.5px solid #eee; display: block;
         }
         .dropdown-content button:hover { background-color: #f1f1f1; }
         .dropdown-wrapper.active .dropdown-content { display: block; }
 
-        /* Kontrol Waktu & Legenda di Kiri Bawah */
+        /* Kontrol Waktu & Legenda di Kiri Bawah (Ukuran Dinaikkan 1.5x) */
         .control-box {
             position: absolute; bottom: 30px; left: 20px; z-index: 1000;
-            background: rgba(255, 255, 255, 0.95); padding: 15px; border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3); max-width: 320px;
+            background: rgba(255, 255, 255, 0.95); padding: 22px; border-radius: 12px;
+            box-shadow: 0 6px 22px rgba(0,0,0,0.3); max-width: 450px;
         }
-        .control-box h4 { margin: 0 0 8px 0; font-size: 13px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+        .control-box h4 { margin: 0 0 12px 0; font-size: 19.5px; border-bottom: 1.5px solid #ddd; padding-bottom: 6px; }
         
-        .time-controls { margin-bottom: 12px; display: flex; flex-direction: column; gap: 6px; }
-        .button-group { display: flex; gap: 4px; justify-content: space-between; }
+        .time-controls { margin-bottom: 18px; display: flex; flex-direction: column; gap: 9px; }
+        .button-group { display: flex; gap: 6px; justify-content: space-between; }
         .time-btn {
-            flex: 1; background: #f0f0f0; border: 1px solid #ccc; padding: 6px 4px; 
-            cursor: pointer; border-radius: 4px; font-size: 11px; font-weight: bold; text-align: center;
+            flex: 1; background: #f0f0f0; border: 1.5px solid #ccc; padding: 9px 6px; 
+            cursor: pointer; border-radius: 6px; font-size: 16.5px; font-weight: bold; text-align: center;
         }
         .time-btn:hover { background: #e0e0e0; }
         .time-btn.active { background: #1E90FF; color: white; border-color: #0d6efd; }
         
-        .nav-playback-group { display: flex; gap: 5px; margin-top: 4px; }
+        .nav-playback-group { display: flex; gap: 7.5px; margin-top: 6px; }
         .action-btn {
-            flex: 1; background: #333; color: white; border: none; padding: 6px; 
-            cursor: pointer; border-radius: 4px; font-size: 11px; font-weight: bold;
+            flex: 1; background: #333; color: white; border: none; padding: 9px; 
+            cursor: pointer; border-radius: 6px; font-size: 16.5px; font-weight: bold;
         }
         .action-btn:hover { background: #444; }
         .action-btn.playing { background: #dc3545; }
 
-        .legend-container { margin-top: 8px; max-height: 180px; overflow-y: auto; }
-        .legend-item { display: flex; align-items: center; margin-bottom: 4px; font-size: 11px; }
-        .legend-color { width: 18px; height: 12px; margin-right: 8px; border: 1px solid #777; flex-shrink: 0; }
+        .legend-container { margin-top: 12px; max-height: 270px; overflow-y: auto; }
+        .legend-item { display: flex; align-items: center; margin-bottom: 6px; font-size: 16.5px; }
+        .legend-color { width: 27px; height: 18px; margin-right: 12px; border: 1.5px solid #777; flex-shrink: 0; }
 
         .dev-watermark {
             position: absolute; bottom: 15px; right: 20px; z-index: 1000;
-            background: rgba(255, 255, 255, 0.85); padding: 6px 12px;
-            border-radius: 4px; font-size: 11px; color: #333; font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.85); padding: 9px 18px;
+            border-radius: 6px; font-size: 16.5px; color: #333; font-weight: bold;
+            box-shadow: 0 3px 7.5px rgba(0,0,0,0.2);
         }
     </style>
 </head>
@@ -189,12 +189,12 @@
             }
         }
 
-        // 5. BATAS ADMINISTRASI (Kabupaten & Provinsi dengan Ketebalan Berbeda)
+        // 5. BATAS ADMINISTRASI (Provinsi & Kabupaten Warna Hitam Homogen, Ukuran Sesuai Asal)
         fetch('admin_provinsi.geojson')
             .then(res => res.json())
             .then(data => {
                 L.geoJSON(data, {
-                    style: { color: "#ffffff", weight: 2.0, fillColor: "transparent", fillOpacity: 0 }
+                    style: { color: "#000000", weight: 2.0, fillColor: "transparent", fillOpacity: 0 }
                 }).addTo(map);
             })
             .catch(err => console.log("Batas provinsi belum dimuat"));
@@ -203,7 +203,7 @@
             .then(res => res.json())
             .then(data => {
                 L.geoJSON(data, {
-                    style: { color: "#ffcc00", weight: 0.8, fillColor: "transparent", fillOpacity: 0 },
+                    style: { color: "#000000", weight: 0.8, fillColor: "transparent", fillOpacity: 0 },
                     onEachFeature: function (feature, layer) {
                         if (feature.properties && feature.properties.WADMKK) {
                             layer.bindTooltip(feature.properties.WADMKK, {sticky: true});
@@ -329,7 +329,7 @@
                     validDates = [];
                     document.getElementById('validDateText').innerText = "⚠️ Data Belum Tersedia";
                     const btnContainer = document.getElementById('dayButtonsContainer');
-                    btnContainer.innerHTML = "<span style='font-size:11px; color:#d9534f; font-weight:bold;'>Data belum diunggah ke server.</span>";
+                    btnContainer.innerHTML = "<span style='font-size:14px; color:#d9534f; font-weight:bold;'>Data belum diunggah ke server.</span>";
                     imageLayers.forEach(layer => map.removeLayer(layer));
                     imageLayers = [];
                 });
