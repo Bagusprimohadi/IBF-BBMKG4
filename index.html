@@ -23,8 +23,7 @@
         .map-header h1 { margin: 4px 0; font-size: 22.5px; font-weight: bold; color: #111; }
         .map-header p { margin: 3px 0 9px 0; font-size: 18px; color: darkred; font-weight: bold; }
 
-        /* Logo di Ujung Kanan Atas (Ukuran Dinaikkan 3x dari 45px = 135px) */
-        /* Logo di Ujung Kanan Atas (Ukuran Dinaikkan 9x dari 45px = 405px) */
+        /* Logo di Ujung Kanan Atas */
         .logo-container {
             position: absolute;
             top: 15px;
@@ -101,6 +100,38 @@
             background: rgba(255, 255, 255, 0.85); padding: 9px 18px;
             border-radius: 6px; font-size: 16.5px; color: #333; font-weight: bold;
             box-shadow: 0 3px 7.5px rgba(0,0,0,0.2);
+        }
+
+        /* --- CSS MEDIA QUERY OTOMATISASI UNTUK HP / LAYAR KECIL --- */
+        @media screen and (max-width: 768px) {
+            .map-header {
+                top: 8px; padding: 10px 12px; min-width: auto; width: 68%;
+                border-radius: 8px; left: 42%;
+            }
+            .map-header h3 { font-size: 10px; }
+            .map-header h1 { font-size: 12px; }
+            .map-header p { font-size: 10px; margin-bottom: 2px; }
+
+            .logo-container { top: 8px; right: 8px; padding: 6px; border-radius: 8px; }
+            .logo-instansi { width: 75px; } /* Logo menyesuaikan agar tidak makan tempat */
+
+            .top-right-controls { top: 75px; right: 8px; gap: 6px; }
+            .dropdown-btn { padding: 8px 12px; font-size: 12px; border-radius: 6px; }
+            .dropdown-content button { padding: 10px 12px; font-size: 12px; }
+
+            .control-box {
+                bottom: 10px; left: 8px; right: 8px; max-width: none;
+                padding: 12px; border-radius: 8px;
+            }
+            .control-box h4 { font-size: 13px; margin-bottom: 6px; padding-bottom: 3px; }
+            .time-btn { padding: 6px 2px; font-size: 12px; }
+            .action-btn { padding: 6px; font-size: 12px; }
+            
+            .legend-container { max-height: 110px; }
+            .legend-item { font-size: 12px; margin-bottom: 3px; }
+            .legend-color { width: 18px; height: 12px; margin-right: 6px; }
+
+            .dev-watermark { display: none; } /* Sembunyikan watermark di HP */
         }
     </style>
 </head>
